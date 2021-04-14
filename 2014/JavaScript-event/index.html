@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhukejin.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文为笔者实验总结如有不正，请指点。  引文：偶然和朋友讨论了事件绑定冒泡和捕获的执行顺序，各持己见，久争不下。 于是实验一番_ 此为 HTML 代码： 12345&lt;body&gt;    &lt;ul class&#x3D;&quot;ulclass&quot;&gt;        &lt;li class&#x3D;&quot;li1class&quot;&gt;1&lt;&#x2F;li&gt;    &lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 事件冒泡和捕获的一些探讨">
+<meta property="og:url" content="https://zhukejin.com/2014/JavaScript-event/index.html">
+<meta property="og:site_name" content="凤歌笑孔丘">
+<meta property="og:description" content="本文为笔者实验总结如有不正，请指点。  引文：偶然和朋友讨论了事件绑定冒泡和捕获的执行顺序，各持己见，久争不下。 于是实验一番_ 此为 HTML 代码： 12345&lt;body&gt;    &lt;ul class&#x3D;&quot;ulclass&quot;&gt;        &lt;li class&#x3D;&quot;li1class&quot;&gt;1&lt;&#x2F;li&gt;    &lt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-06-20T03:57:19.000Z">
+<meta property="article:modified_time" content="2021-04-14T05:18:47.736Z">
+<meta property="article:author" content="Primo">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zhukejin.com/2014/JavaScript-event/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Javascript 事件冒泡和捕获的一些探讨 | 凤歌笑孔丘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">凤歌笑孔丘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhukejin.com/2014/JavaScript-event/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="Primo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凤歌笑孔丘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript 事件冒泡和捕获的一些探讨
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-06-20 11:57:19" itemprop="dateCreated datePublished" datetime="2014-06-20T11:57:19+08:00">2014-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-14 13:18:47" itemprop="dateModified" datetime="2021-04-14T13:18:47+08:00">2021-04-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本文为笔者实验总结<br>如有不正，请指点。</p>
+</blockquote>
+<p><em>引文：偶然和朋友讨论了事件绑定冒泡和捕获的执行顺序，各持己见，久争不下。</em></p>
+<p>于是实验一番_</p>
+<p>此为 HTML 代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;ulclass&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;li1class&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h3 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> $El = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.ulclass&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> $El1 = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.li1class&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//冒泡</span></span><br><span class="line">    $El.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">    &#125;,<span class="literal">false</span>);</span><br><span class="line">    <span class="comment">//捕获 </span></span><br><span class="line">    $El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">    &#125;,<span class="literal">true</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实验分析：冒泡执行过程中是从最内层元素 li 开始往外冒泡，在 经过 li 一层元素后到达 ul 被触发。而捕获过程则一共经历 window-&gt; document -&gt; body -&gt; ul 四层元素后到达 li ，被触发，看起来好像是应该先弹出 ul ，然后再弹出 li。</p>
+<p>实验结果：点击 li 内的 1 的时候，第一次弹出 “li”，第二次弹出 “ul” 。</p>
+<h4 id="猜想一"><a href="#猜想一" class="headerlink" title="猜想一"></a>猜想一</h4><ul>
+<li><strong>在冒泡事件和捕获事件同时存在的情况下，捕获事件优先级高一点</strong>。</li>
+</ul>
+<p>为了验证这个猜想，再来做几个实验：</p>
+<h3 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">	    <span class="keyword">var</span> $El = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.ulclass&quot;</span>);</span><br><span class="line">	    <span class="keyword">var</span> $El1 = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.li1class&quot;</span>);</span><br><span class="line">		<span class="comment">//捕获</span></span><br><span class="line">	    $El.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	        alert(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">	    &#125;,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//冒泡</span></span><br><span class="line">	    $El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	        alert(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">	    &#125;,<span class="literal">false</span>);</span><br><span class="line">	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实验分析：如果上述猜想是正确的，那么这次的执行结果就应该是先弹出 “ul” 再弹出 “li”。</p>
+<p>实验结果：先弹出 “ul” 再弹出 “li”。</p>
+<h3 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h3><p>再来试一下两个事件都冒泡的情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//冒泡</span></span><br><span class="line">$El.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//冒泡</span></span><br><span class="line">$El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;li&quot;</span>);</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>实验分析：如果两个都为冒泡的情况下，点击后应从最里面的元素往外冒，也就是先弹出 li , 再弹出 ul.</p>
+<p>实验结果：无误。</p>
+<p>然后将两个事件都改成捕获，则先弹出 ul 再 弹出 li ，与预期完全一样。</p>
+<h3 id="实验五"><a href="#实验五" class="headerlink" title="实验五"></a>实验五</h3><p>这里把本来在 ul 上绑定的事件放到 li 上，也就是 li 绑定两个事件，一个为冒泡，一个为捕获。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $El = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.ulclass&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> $El1 = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.li1class&quot;</span>);</span><br><span class="line">   <span class="comment">//冒泡</span></span><br><span class="line">   $El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       alert(<span class="string">&quot;冒泡&quot;</span>);</span><br><span class="line">   &#125;,<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//捕获</span></span><br><span class="line">   $El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       alert(<span class="string">&quot;捕获&quot;</span>);</span><br><span class="line">   &#125;,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>实验分析：按照之前的猜测，应该是先弹出捕获，然后弹出冒泡。（如果是这样的话我也不会写这么多了…）<br>实验结果：先弹出了 冒泡，然后弹出了捕获。</p>
+<p>为什么？？</p>
+<h4 id="猜想二"><a href="#猜想二" class="headerlink" title="猜想二"></a>猜想二</h4><ul>
+<li><strong>在同一个元素的绑定事件中，冒泡和捕获没有次序之分，遵循Javascript的执行顺序。</strong></li>
+</ul>
+<h4 id="实验六"><a href="#实验六" class="headerlink" title="实验六"></a>实验六</h4><p>为了进一步证实这个猜测…我们将冒泡和捕获的位置调换一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $El = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.ulclass&quot;</span>);</span><br><span class="line">   <span class="keyword">var</span> $El1 = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.li1class&quot;</span>);</span><br><span class="line">   <span class="comment">//捕获</span></span><br><span class="line">   $El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       alert(<span class="string">&quot;捕获&quot;</span>);</span><br><span class="line">   &#125;,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//冒泡</span></span><br><span class="line">   $El1.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       alert(<span class="string">&quot;冒泡&quot;</span>);</span><br><span class="line">   &#125;,<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>实验结果： 先捕获，后冒泡。</p>
+<p>看似是这样了，但是在重复实验五 的时候，li下一级有一个元素 a ，直接点击 li 很符合上面的推测，但是在点击a元素的时候，先弹出了捕获。</p>
+<p>为什么？？</p>
+<h4 id="猜测三"><a href="#猜测三" class="headerlink" title="猜测三"></a>猜测三</h4><ul>
+<li><strong>在元素上同时绑定捕获事件和冒泡事件，如果通过此元素的子级元素触发，则优先触发捕获事件，若不通过此元素的子级元素触发，则按照Javascript执行顺序触发。</strong></li>
+</ul>
+<p><strong>附：</strong></p>
+<p>冒泡经常用于需要绑定很多事件的时候，给他们父级元素绑定一个事件，可以有效的提高代码执行效率。<br>比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;ulclass&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;li1class&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;li1class&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;li1class&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">           ...</span><br><span class="line">           ...</span><br><span class="line">           <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;li1class&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>假如此处有100个li，每个li元素上都绑定一个事件的话就验证影响了执行效率，那么就可以在ul 上绑定一个事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> $El = <span class="built_in">document</span>.querySelector(<span class="string">&quot;.ulclass&quot;</span>);</span><br><span class="line">    <span class="comment">//冒泡</span></span><br><span class="line">    $El.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(event.target);</span><br><span class="line">    &#125;,<span class="literal">false</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中 event.target 就是获取触发来源。<br>it’ OK。</p>
+<p><strong>附二：</strong></p>
+<p>经网友描述：</p>
+<p>###事件传播三阶段：</p>
+<ol>
+<li>capture phase （事件捕获）</li>
+<li>target phase （处于目标）</li>
+<li>bubbling phase （事件冒泡）</li>
+</ol>
+<p>在 target phase，event handler 被调用的顺序不再遵循先捕获，后冒泡的原则，而是严格按照 event handler 注册的顺序，先注册，故而先执行。要改变二者的执行顺序，只需要改变两段源码的顺序即可。</p>
+<h3 id="W3C-规范："><a href="#W3C-规范：" class="headerlink" title="W3C 规范："></a>W3C 规范：</h3><p>Next, the implementation must determine the current target’s candidate event listeners. This must be the list of all event listeners that have been registered on the current target in their order of registration. [HTML5] defines the ordering of listeners registered through event handler attributes. Once determined, the candidate event listeners must not be changed. Adding or removing listeners does not affect the current target’s candidate event listeners.</p>
+<p>见：</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18103391/usecapture-in-addeventlistener-behaves-strangely?lq=1">https://stackoverflow.com/questions/18103391/usecapture-in-addeventlistener-behaves-strangely?lq=1</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/11841330/event-listeners-registered-for-capturing-phase-not-triggered-before-bubbling-w">https://stackoverflow.com/questions/11841330/event-listeners-registered-for-capturing-phase-not-triggered-before-bubbling-w</a></p>
+<p>欢迎指正。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Code/" rel="tag"># Code</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2014/%E7%94%B2%E5%8D%88%E5%B9%B4%E5%B7%B1%E5%B7%B3%E6%9C%88%E6%9C%AB%E4%BD%9C/" rel="prev" title="甲午年己巳月末作">
+      <i class="fa fa-chevron-left"></i> 甲午年己巳月末作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/JavaScript-this/" rel="next" title="七种情况下 This 的指向问题">
+      七种情况下 This 的指向问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">实验一：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8C%9C%E6%83%B3%E4%B8%80"><span class="nav-number">1.1.</span> <span class="nav-text">猜想一</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="nav-number">2.</span> <span class="nav-text">实验二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="nav-number">3.</span> <span class="nav-text">实验四</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="nav-number">4.</span> <span class="nav-text">实验五</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8C%9C%E6%83%B3%E4%BA%8C"><span class="nav-number">4.1.</span> <span class="nav-text">猜想二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="nav-number">4.2.</span> <span class="nav-text">实验六</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8C%9C%E6%B5%8B%E4%B8%89"><span class="nav-number">4.3.</span> <span class="nav-text">猜测三</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#W3C-%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">W3C 规范：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Primo"
+      src="/images/avatar/avatar.png">
+  <p class="site-author-name" itemprop="name">Primo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhukejin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhukejin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhukejin@msn.com" title="E-Mail → mailto:zhukejin@msn.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/zhukejin1223" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;zhukejin1223" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://edwardii.cn/" title="https:&#x2F;&#x2F;edwardii.cn&#x2F;" rel="noopener" target="_blank">Edwardii</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2012 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Primo</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

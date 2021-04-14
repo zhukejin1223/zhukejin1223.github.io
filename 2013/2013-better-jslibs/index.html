@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhukejin.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="原文 ： http:&#x2F;&#x2F;www.admin10000.com&#x2F;document&#x2F;4929.html   Blast.js   Blast.js通过字母、单词或是句子来分隔一段文本，这样你就可以把动画和样式注入到文本中。   Intense Images  Intense Images是一个可以让用户全屏查看原像素照片的javascript库，高质量的照片大小一般不只有电脑屏幕这么大，它提供我们滑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2013年 30个实用的 Javascript 库">
+<meta property="og:url" content="https://zhukejin.com/2013/2013-better-jslibs/index.html">
+<meta property="og:site_name" content="凤歌笑孔丘">
+<meta property="og:description" content="原文 ： http:&#x2F;&#x2F;www.admin10000.com&#x2F;document&#x2F;4929.html   Blast.js   Blast.js通过字母、单词或是句子来分隔一段文本，这样你就可以把动画和样式注入到文本中。   Intense Images  Intense Images是一个可以让用户全屏查看原像素照片的javascript库，高质量的照片大小一般不只有电脑屏幕这么大，它提供我们滑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-12-08T01:58:55.000Z">
+<meta property="article:modified_time" content="2021-04-14T05:18:47.734Z">
+<meta property="article:author" content="Primo">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zhukejin.com/2013/2013-better-jslibs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2013年 30个实用的 Javascript 库 | 凤歌笑孔丘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">凤歌笑孔丘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhukejin.com/2013/2013-better-jslibs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="Primo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凤歌笑孔丘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2013年 30个实用的 Javascript 库
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-12-08 09:58:55" itemprop="dateCreated datePublished" datetime="2013-12-08T09:58:55+08:00">2013-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-14 13:18:47" itemprop="dateModified" datetime="2021-04-14T13:18:47+08:00">2021-04-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>原文 ： <a target="_blank" rel="noopener" href="http://www.admin10000.com/document/4929.html">http://www.admin10000.com/document/4929.html</a></p>
+</blockquote>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://velocityjs.org/blast/">Blast.js</a></p>
+<ul>
+<li> Blast.js通过字母、单词或是句子来分隔一段文本，这样你就可以把动画和样式注入到文本中。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://tholman.com/intense-images/">Intense Images</a></p>
+<ul>
+<li>Intense Images是一个可以让用户全屏查看原像素照片的javascript库，高质量的照片大小一般不只有电脑屏幕这么大，它提供我们滑动查看，效果非常完美。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://hammerjs.github.io/">Hammer.js</a></p>
+<ul>
+<li>Hammer.js可以为你的网站添加触摸手势，是一个多点触摸手势库，能够为网页加入Tap、Double Tap、Swipe、Hold、Pinch、Drag等多点触摸事件，免去自己监听底层touchstart、touchmove、touchend事件并且写一大堆判断逻辑的痛苦。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/fastly/epoch/">epoch</a></p>
+<ul>
+<li>Epoch是一个生成实时图表的javascript库，它专注于可视化编程的两个方面：为历史数据创建图表和实时的数据图表可视化显示。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://boba.space150.com/">Boba.js</a></p>
+<ul>
+<li>Boba.js是一个易扩展的javascript库，它可以让添加谷歌统计变得简单，它不仅支持经典的ga.js库，而且支持新生的analytics.js，而且它有一个很酷的功能——trackLinks，trackLinks可以跟踪所有的子页面。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://danieltao.com/lazy.js/">Lazy.js</a></p>
+<ul>
+<li>Lazy.js和Underscore和Lo-Dash的功能很像，但是有一个重要的区别：它是延迟执行的，它可以在大多数情景下展示出很好的性能，尤其是在解决大型数组的时候。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mgechev.github.io/jscapture/">jscapture</a></p>
+<ul>
+<li>JSCapture是用纯JavaScript和HTML5写的屏蔽录制库。它允许你通过你的浏览器对桌面进行截图或录制，它使用getUserMedia来进行屏蔽捕捉，目前它只支持Chrome浏览器。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://code.kik.com/app/2/index.html">App.js</a></p>
+<ul>
+<li>App.js是一个轻量级的JavaScript UI库，因为它有一个好名字，现在它已经算是一个明星库了，它可以为你的网站生成一个用户体验很好的手机应用，完全不会影响到性能。而且它是跨平台的，支持Android 2.2以上版本和IOS 4.3以上版本。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://github.hubspot.com/shepherd/docs/welcome/">Shepherd</a></p>
+<ul>
+<li>Shepherd是一个为应用创建用户指南的javascript库。它用到了另外一个开源的库——Tether。Tether可以确保用户指南不会受到浏览器布局的影响。目前Shepherd支持IE9以上和其它所有的现代浏览器。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://mark-rolich.github.io/RulersGuides.js/">RulersGuide.js</a></p>
+<ul>
+<li>RulersGuides.js是一个类似PhotoShop标尺的javascript库。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://seenjs.io/">seen.js</a></p>
+<ul>
+<li>Seen.js渲染3D场景为SVG或者HTML Canvas。Seen.js包含对于SVG和HTML5 Canvas元素的图形功能的简单抽象。所以这个库的其它组件都是不用关心要渲染类型的。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://ichord.github.io/At.js/">At.Js</a></p>
+<ul>
+<li>At.js 是一个自动完成库，用来实现自动完成的提示，如表情等，就像你在 Github 或 Twitter 上看到的一样。它支持 HTML5 contentEditable 元素。你可以监听任何字符，而不仅仅是 ‘@’ 符号，可为不同的字符设置多个监听器以实现不同的行为和数据。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://bouncejs.com/">IBounce.js</a></p>
+<ul>
+<li>bounce.js 是一个用于制作漂亮的 CSS3 关键帧动画的 JavaScript 库，使用其特有的方式生成的动画效果。只需添加一个组件，选择预设，然后你就可以得到一个短网址或者导出为 CSS 代码。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://visjs.org/">Vis.js</a></p>
+<ul>
+<li>Vis.js 是一个动态的，基于浏览器的可视化库。该库被设计为易于使用，能处理大量的动态数据。该库由以下几部分组成：一是数据集和数据视图，基于灵活的键/值数据集，可以添加，更新和删除项目，订阅数据集变化；二是时间轴，用于显示不同类型的时间轴数据，在时间轴上项目可以交互移动，缩放和操纵；三是图形，使用节点和边显示一个交互式图形或网络。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://bigspaceship.github.io/shine.js/">shine.js</a></p>
+<ul>
+<li>Shine.js 是一个用于实现漂亮阴影的 JavaScript 库。您可以设置动态光的位置，可定制的阴影。不依赖于第三方库，兼容 AMD。能在支持 textShadow 或 boxShadow 的浏览器中正常使用，如果有需要会自动添加前缀。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/marmelab/gremlins.js">gremlins.js</a></p>
+<ul>
+<li>Gremlins.js 是基于 JavaScript 编写的 Monkey 测试库，支持 Node.js 平台和浏览器中使用。Gremlins.js 随机模拟用户操作：单击窗口中的任意位置，在表格中输入随机数据，或者将鼠标移动到特别的元素。Gremlins.j 的目的是触发 JavaScript 错误或使应用程序失败。如果它不能让你应用程序崩溃，那么说明你的应用程序已经足够强大了，可以发布给真正的用户使用。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://forio.com/contour/">contour.js</a></p>
+<ul>
+<li>Contour是Forio的可视化库提供的一个核心的通用库。建立于受欢迎的D3引擎之上，它可以让你很容易的建立一个可视化的数据图形。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://stickerjs.cmiscm.com/">stickerjs</a></p>
+<ul>
+<li>Sticker.js 是一个很小的 JavaScript 库，它允许您在网页中创建漂亮的贴纸效果。没有依赖关系（不需要 jQuery），可以在大多数支持 CSS3 的主流浏览器工作。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/fulmicoton/fattable">fattable.js</a></p>
+<ul>
+<li>Fattable是一个帮助创建无限滚动，及其无限行列数的Javascript类库。比较大的表（多余10000个单元格）使用DOM处理不是很方便。你的滚动会变得不均匀。同时比较大的表格增长的速度也更快。不太可能让用户去下载或者保留全部数据。Fattable可以帮助你很好的处理异步数据加载</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/piqnt/cutjs/">cutjs</a></p>
+<ul>
+<li>　CutJS是一个帮助你开发高性能，动态互动2DHTML5图形的超迷类库。支持现代浏览器和移动设备，可以帮助你开发游戏和可视化的应用。CutJS提供了DOM类型的API来创建和播放基于画布的图形。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/uberVU/grid">grid.js</a></p>
+<ul>
+<li>GridList是一个二维的可拖拉的响应式列表库。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://eliperelman.com/fn.js/">fn.js</a></p>
+<ul>
+<li>fn.js是一个鼓励你使用函数编程风格的可选Javascript类库。主要帮助你基于性能和规则来支持函数化实践。为了保证你的路径正确。fn.js内部强制避免side effects，Object Mutation和Function state。支持Node.js或者浏览器，可以使用常规的script来引用或者通过AMD加载器，例如，RequireJS。即将支持Bower。fn.js基于MIT LIcensed，你可以在Github下载</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://usablica.github.io/progress.js/">progress.js</a></p>
+<ul>
+<li>Progress.js是一个帮助开发人员使用JS和CSS3创建进度条的javascript类库。你可以自己设计进度条的模板或者自定义。你可以使用progess.js来展示加载内容的进度（images，Video等等），可以应用到所有页面元素，比如，textbox，textarea甚至整个body</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://bouncejs.com/">IBounce.js</a></p>
+<ul>
+<li>bounce.js 是一个用于制作漂亮的 CSS3 关键帧动画的 JavaScript 库，使用其特有的方式生成的动画效果。只需添加一个组件，选择预设，然后你就可以得到一个短网址或者导出为 CSS 代码。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://instantclick.io/">instantclick.js</a></p>
+<ul>
+<li>用来帮助你实现网站提速的Javascript类库，能够帮助导航更加高效。它预加载你的用户可能会点击的一些链接。可以配置来在特定操作下加载，例如，mousedown</li>
+</ul>
+</li>
+<li><p><a href="hhttp://mynameismatthieu.com/WOW/">WOW.js</a></p>
+<ul>
+<li>帮助你在滚动过程中展示CSS动画效果。缺省你可以用它来触发animate.css动画。当然，你可以配置来触发其他你喜欢使用的动画类库</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://typerendering.com/">Type Rendering Mix</a></p>
+<ul>
+<li>Type Rendering Mix是个基于浏览器、应用CSS文本渲染的引擎。Type Rendering Mix通过解析用户代理字符串检测浏览器的文本rasterizer和antialiasing方法。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://scrollrevealjs.org/">scrollrevealjs</a></p>
+<ul>
+<li>ScrollReveal.js 用于创建和管理元素进入可视区域时的动画效果，帮助你的网站增加吸引力。只需要给元素增加 data-scrollreveal 属性，当元素进入可视区域的时候会自动被触发设置好的动画</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://abpetkov.github.io/switchery/">switchery.js</a></p>
+<ul>
+<li>　Switchery是个简单的JavaScript组件，只要几个简单的步骤就可以帮助用户把默认的HTML复选框转换成漂亮iOS 7样式风格。用户可以很方便的自定义这种转换，所以可以很好的配合你的设计风格。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://toddmotto.com/echo-js-simple-javascript-image-lazy-loading/">echo.js</a></p>
+<ul>
+<li>Echo.js 是一个独立的延迟加载图片的 JavaScript 插件。Echo.js 不依赖第三方库，压缩后不到1KB大小。 延迟加载是提高网页首屏显示速度的一种很有效的方法，当图片元素进入窗口可视区域的时候，它就会改变图像的 src 属性，从服务端加载所需的图片，这也是一个异步的过程。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Code/" rel="tag"># Code</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2013/%E5%87%A4%E5%87%B0%E6%B8%B8/" rel="prev" title="凤凰游">
+      <i class="fa fa-chevron-left"></i> 凤凰游
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2014/%E7%94%B2%E5%8D%88%E5%B9%B4%E5%B7%B1%E5%B7%B3%E6%9C%88%E6%9C%AB%E4%BD%9C/" rel="next" title="甲午年己巳月末作">
+      甲午年己巳月末作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Primo"
+      src="/images/avatar/avatar.png">
+  <p class="site-author-name" itemprop="name">Primo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhukejin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhukejin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhukejin@msn.com" title="E-Mail → mailto:zhukejin@msn.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/zhukejin1223" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;zhukejin1223" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://edwardii.cn/" title="https:&#x2F;&#x2F;edwardii.cn&#x2F;" rel="noopener" target="_blank">Edwardii</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2012 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Primo</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

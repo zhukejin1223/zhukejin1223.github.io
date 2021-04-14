@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhukejin.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="command + shift + j 打开控制台   一般输出 console.log() 普通打印 console.info() 一般信息 console.warn() 警告提示 console.error() 错误提示 console.debug() 等于 log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrome-console">
+<meta property="og:url" content="https://zhukejin.com/2018/chrome-console/index.html">
+<meta property="og:site_name" content="凤歌笑孔丘">
+<meta property="og:description" content="command + shift + j 打开控制台   一般输出 console.log() 普通打印 console.info() 一般信息 console.warn() 警告提示 console.error() 错误提示 console.debug() 等于 log">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/log.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/log-up.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/group.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/groupColl.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/table.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/trace.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/dir.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/dir-xml.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/count.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/timeEnd.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/memory.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/profile.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/xpath.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/dash.png">
+<meta property="og:image" content="https://zhukejin.com/2018/chrome-console/monitor.png">
+<meta property="article:published_time" content="2018-06-05T09:38:07.000Z">
+<meta property="article:modified_time" content="2021-04-14T05:18:47.738Z">
+<meta property="article:author" content="Primo">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhukejin.com/2018/chrome-console/log.png">
+
+<link rel="canonical" href="https://zhukejin.com/2018/chrome-console/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>chrome-console | 凤歌笑孔丘</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">凤歌笑孔丘</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhukejin.com/2018/chrome-console/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.png">
+      <meta itemprop="name" content="Primo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凤歌笑孔丘">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chrome-console
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-05 17:38:07" itemprop="dateCreated datePublished" datetime="2018-06-05T17:38:07+08:00">2018-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-14 13:18:47" itemprop="dateModified" datetime="2021-04-14T13:18:47+08:00">2021-04-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>command + shift + j</code> 打开控制台  </p>
+<h2 id="一般输出"><a href="#一般输出" class="headerlink" title="一般输出"></a>一般输出</h2><ul>
+<li>console.log() 普通打印</li>
+<li>console.info() 一般信息</li>
+<li>console.warn() 警告提示</li>
+<li>console.error() 错误提示</li>
+<li>console.debug() 等于 log</li>
+</ul>
+<span id="more"></span>
+
+<p>大家可能不知道的，console 可以使用 printf 风格的占位符<br>目前支持字符（%s）、整数（%d或%i）、浮点数（%f）、格式化自身(%c)、格式化 DOM对象(%o) 、 格式化 JavaScript 对象 (%O)。</p>
+<p><img src="./log.png"></p>
+<p><img src="./log-up.png"></p>
+<h4 id="console-group"><a href="#console-group" class="headerlink" title="console.group()"></a>console.group()</h4><h4 id="console-groupEnd"><a href="#console-groupEnd" class="headerlink" title="console.groupEnd()"></a>console.groupEnd()</h4><p>分组打印内容<br><img src="./group.png"></p>
+<h4 id="console-groupCollapsed"><a href="#console-groupCollapsed" class="headerlink" title="console.groupCollapsed()"></a>console.groupCollapsed()</h4><p>分组打印内容， 默认折叠<br><img src="./groupColl.png"></p>
+<h4 id="console-table"><a href="#console-table" class="headerlink" title="console.table()"></a>console.table()</h4><p>可以直接把一个 [<Object>] 类型数组，输出成表格</p>
+<p><img src="./table.png"></p>
+<h4 id="console-trace"><a href="#console-trace" class="headerlink" title="console.trace()"></a>console.trace()</h4><p>追溯式打印, 我们代码中的 </p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(<span class="keyword">this</span>.xxx, <span class="number">13123123</span>) </span><br></pre></td></tr></table></figure>
+<p>以后就可以换成</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.trace(<span class="built_in">this</span>.xxx)</span><br></pre></td></tr></table></figure>
+<p>了</p>
+<p><img src="./trace.png"></p>
+<h4 id="console-dir"><a href="#console-dir" class="headerlink" title="console.dir()"></a>console.dir()</h4><p>打印级联内容, 类似上面的 console</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.dir(<span class="built_in">document</span>.body)</span><br></pre></td></tr></table></figure>
+<p><img src="./dir.png"></p>
+<h4 id="console-dirxml"><a href="#console-dirxml" class="headerlink" title="console.dirxml()"></a>console.dirxml()</h4><p>打印级联内容，并以 xml 格式解析</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.dirxml(<span class="built_in">document</span>.body)</span><br></pre></td></tr></table></figure>
+<p><img src="./dir-xml.png"></p>
+<h4 id="console-assert-断言"><a href="#console-assert-断言" class="headerlink" title="console.assert() 断言"></a>console.assert() 断言</h4><p>它会在传入的第一个参数为 <code>false</code> 的时候， 抛出第二个参数。<br>举个例子，为了防止日常开发中的日志信息误上生产环境后产生的一些问题， 可以设置全局 debug 常量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> appConfig = &#123;</span><br><span class="line">	debug: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.assert(!debug, <span class="string">&#x27;错误信息&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="console-clear-清空控制台"><a href="#console-clear-清空控制台" class="headerlink" title="console.clear() 清空控制台"></a>console.clear() 清空控制台</h4><p>清空控制台信息，同直接执行 <code>clear()</code> 或者按 <code>cmd + k</code>， 不同的是它可以在代码中调用</p>
+<h4 id="console-context"><a href="#console-context" class="headerlink" title="console.context()"></a>console.context()</h4><p>返回 console 对象的内容：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myc = console.<span class="built_in">context</span>();</span><br><span class="line">myc.<span class="built_in">log</span>(<span class="number">123</span>)</span><br></pre></td></tr></table></figure>
+<p>目前想不到实际用处</p>
+<h4 id="console-count-计数"><a href="#console-count-计数" class="headerlink" title="console.count() 计数"></a>console.count() 计数</h4><p>可以记录一个函数或者一段代码重复执行了多少次，每执行一次，就会自动增加1</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Array</span><span class="params">(<span class="number">3</span>)</span></span><span class="selector-class">.fill</span>(<span class="number">0</span>)<span class="selector-class">.forEach</span>(v =&gt; console<span class="selector-class">.count</span>(<span class="string">&#x27;执行次数：&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="./count.png"></p>
+<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><h4 id="console-time"><a href="#console-time" class="headerlink" title="console.time()"></a>console.time()</h4><h4 id="console-timeEnd"><a href="#console-timeEnd" class="headerlink" title="console.timeEnd()"></a>console.timeEnd()</h4><p><img src="./timeEnd.png"></p>
+<h4 id="console-memory"><a href="#console-memory" class="headerlink" title="console.memory"></a>console.memory</h4><p>性能分析工具，可以用来查看当前堆栈的使用情况<br>它是 console 的一个属性，不是一个方法。</p>
+<p><img src="./memory.png"></p>
+<h4 id="console-profile"><a href="#console-profile" class="headerlink" title="console.profile()"></a>console.profile()</h4><h4 id="console-profileEnd"><a href="#console-profileEnd" class="headerlink" title="console.profileEnd()"></a>console.profileEnd()</h4><p>可以查看 CPU 使用相关的信息、代码执行具体过程。<br>鸡肋， 可以通过UI 实现。</p>
+<p><img src="./profile.png"></p>
+<h2 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h2><h4 id="选择元素"><a href="#选择元素" class="headerlink" title="选择元素"></a>选择元素</h4><h5 id=""><a href="#" class="headerlink" title="$()"></a>$()</h5><p>返回满足指定CSS规则的第一个元素，此方法为document.querySelector()的简化</p>
+<h5 id="-1"><a href="#-1" class="headerlink" title="$$()"></a>$$()</h5><p>返回满足指定CSS规则的所有元素，此方法为querySelectorAll()的简化。</p>
+<h5 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h5><p>XPath即为XML路径语言（XML Path Language），它是一种用来确定XML文档中某部分位置的语言。</p>
+<p>xPath 语法：<a target="_blank" rel="noopener" href="http://www.w3school.com.cn/xpath/">http://www.w3school.com.cn/xpath/</a></p>
+<p>例子:</p>
+<p><img src="./xpath.png"></p>
+<h4 id="-2"><a href="#-2" class="headerlink" title="$_"></a>$_</h4><p>访问最近的控制台结果，如：<br><img src="./dash.png"></p>
+<h4 id="inspect"><a href="#inspect" class="headerlink" title="inspect"></a>inspect</h4><p>可以直接在命令行中审查元素</p>
+<p>inspect($0)</p>
+<h4 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h4><p>直接复制到系统粘贴板</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title"><span class="built_in">copy</span></span>(<span class="variable">document.body</span>)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="keys-amp-values"><a href="#keys-amp-values" class="headerlink" title="keys &amp; values"></a>keys &amp; values</h4><p>同 Object.keys 、Object、values</p>
+<h4 id="monitor-amp-unmonitor"><a href="#monitor-amp-unmonitor" class="headerlink" title="monitor &amp; unmonitor"></a>monitor &amp; unmonitor</h4><p>监控一个函数的调用，打印出这个函数的具体调用信息，如果想知道一个函数在哪里被调用了，一共调用几次的时候， 很有用。</p>
+<p><img src="./monitor.png"></p>
+<h4 id="monitorEvents"><a href="#monitorEvents" class="headerlink" title="monitorEvents"></a>monitorEvents</h4><p>监控事件，ex:</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">monitor<span class="constructor">Events(<span class="params">document</span>.<span class="params">body</span>, <span class="string">&quot;click&quot;</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p>参考文章：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developers.google.com/web/tools/chrome-devtools/console/">https://developers.google.com/web/tools/chrome-devtools/console/</a><br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/Wayou/p/chrome-console-tips-and-tricks.html">http://www.cnblogs.com/Wayou/p/chrome-console-tips-and-tricks.html</a>  </p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Code/" rel="tag"># Code</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/%E4%B9%85%E5%88%AB%E7%A6%BB/" rel="prev" title="久别离">
+      <i class="fa fa-chevron-left"></i> 久别离
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/longest-continuous-increasing-subsequence/" rel="next" title="寻找连续最长的递增序列">
+      寻找连续最长的递增序列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E8%BE%93%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">一般输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#console-group"><span class="nav-number">1.0.1.</span> <span class="nav-text">console.group()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-groupEnd"><span class="nav-number">1.0.2.</span> <span class="nav-text">console.groupEnd()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-groupCollapsed"><span class="nav-number">1.0.3.</span> <span class="nav-text">console.groupCollapsed()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-table"><span class="nav-number">1.0.4.</span> <span class="nav-text">console.table()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-trace"><span class="nav-number">1.0.5.</span> <span class="nav-text">console.trace()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-dir"><span class="nav-number">1.0.6.</span> <span class="nav-text">console.dir()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-dirxml"><span class="nav-number">1.0.7.</span> <span class="nav-text">console.dirxml()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-assert-%E6%96%AD%E8%A8%80"><span class="nav-number">1.0.8.</span> <span class="nav-text">console.assert() 断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-clear-%E6%B8%85%E7%A9%BA%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="nav-number">1.0.9.</span> <span class="nav-text">console.clear() 清空控制台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-context"><span class="nav-number">1.0.10.</span> <span class="nav-text">console.context()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-count-%E8%AE%A1%E6%95%B0"><span class="nav-number">1.0.11.</span> <span class="nav-text">console.count() 计数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">性能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#console-time"><span class="nav-number">2.0.1.</span> <span class="nav-text">console.time()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-timeEnd"><span class="nav-number">2.0.2.</span> <span class="nav-text">console.timeEnd()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-memory"><span class="nav-number">2.0.3.</span> <span class="nav-text">console.memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-profile"><span class="nav-number">2.0.4.</span> <span class="nav-text">console.profile()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#console-profileEnd"><span class="nav-number">2.0.5.</span> <span class="nav-text">console.profileEnd()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7"><span class="nav-number">3.</span> <span class="nav-text">其他技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%85%83%E7%B4%A0"><span class="nav-number">3.0.1.</span> <span class="nav-text">选择元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">$()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#-1"><span class="nav-number">3.0.1.2.</span> <span class="nav-text">$$()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XPath"><span class="nav-number">3.0.1.3.</span> <span class="nav-text">XPath</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">$_</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inspect"><span class="nav-number">3.0.3.</span> <span class="nav-text">inspect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#copy"><span class="nav-number">3.0.4.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keys-amp-values"><span class="nav-number">3.0.5.</span> <span class="nav-text">keys &amp; values</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#monitor-amp-unmonitor"><span class="nav-number">3.0.6.</span> <span class="nav-text">monitor &amp; unmonitor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#monitorEvents"><span class="nav-number">3.0.7.</span> <span class="nav-text">monitorEvents</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Primo"
+      src="/images/avatar/avatar.png">
+  <p class="site-author-name" itemprop="name">Primo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhukejin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhukejin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhukejin@msn.com" title="E-Mail → mailto:zhukejin@msn.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/zhukejin1223" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;zhukejin1223" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://edwardii.cn/" title="https:&#x2F;&#x2F;edwardii.cn&#x2F;" rel="noopener" target="_blank">Edwardii</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2012 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Primo</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
