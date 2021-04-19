@@ -20,21 +20,20 @@
     var CONFIG = {"hostname":"zhukejin.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="关于 Webpack + React 的性能优化 这篇文章很早就想写了，但是由于工作太忙，一直挤不出时间。正好趁月底挤干货的时间弄出来一篇。由于本文内容是作者自互联网收集 + 实践与发散思维得出，故可能随时会更新修改，为了方便读者追本索源，转载请保留头部，谢谢本文链接   另： 本文不是新手教程，关于 WebPack 如何入门配置、React Jsx 的Loader 等，请移步这里： 使用Jsx">
+  <meta name="description" content="Homebrew 是什么? brew 安装问题资源被墙由于 GFW 的存在，某些时候可能会导致如下报错 12curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack&amp;React 性能优化">
-<meta property="og:url" content="https://zhukejin.com/2016/webpack-React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="关于 Homebrew 的一些小技巧">
+<meta property="og:url" content="https://zhukejin.com/2021/about-homebrew/index.html">
 <meta property="og:site_name" content="凤歌笑孔丘">
-<meta property="og:description" content="关于 Webpack + React 的性能优化 这篇文章很早就想写了，但是由于工作太忙，一直挤不出时间。正好趁月底挤干货的时间弄出来一篇。由于本文内容是作者自互联网收集 + 实践与发散思维得出，故可能随时会更新修改，为了方便读者追本索源，转载请保留头部，谢谢本文链接   另： 本文不是新手教程，关于 WebPack 如何入门配置、React Jsx 的Loader 等，请移步这里： 使用Jsx">
+<meta property="og:description" content="Homebrew 是什么? brew 安装问题资源被墙由于 GFW 的存在，某些时候可能会导致如下报错 12curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-09-17T03:11:45.000Z">
-<meta property="article:modified_time" content="2021-04-14T08:04:50.386Z">
+<meta property="article:published_time" content="2021-04-19T12:02:47.000Z">
+<meta property="article:modified_time" content="2021-04-19T12:08:03.900Z">
 <meta property="article:author" content="Primo">
-<meta property="article:tag" content="React">
-<meta property="article:tag" content="Webpack">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zhukejin.com/2016/webpack-React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+<link rel="canonical" href="https://zhukejin.com/2021/about-homebrew/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>webpack&React 性能优化 | 凤歌笑孔丘</title>
+  <title>关于 Homebrew 的一些小技巧 | 凤歌笑孔丘</title>
   
 
 
@@ -152,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhukejin.com/2016/webpack-React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="https://zhukejin.com/2021/about-homebrew/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.png">
@@ -165,7 +164,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          webpack&React 性能优化
+          关于 Homebrew 的一些小技巧
         </h1>
 
         <div class="post-meta">
@@ -174,23 +173,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2016-09-17 11:11:45" itemprop="dateCreated datePublished" datetime="2016-09-17T11:11:45+08:00">2016-09-17</time>
+              <time title="创建时间：2021-04-19 20:02:47 / 修改时间：20:08:03" itemprop="dateCreated datePublished" datetime="2021-04-19T20:02:47+08:00">2021-04-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-14 16:04:50" itemprop="dateModified" datetime="2021-04-14T16:04:50+08:00">2021-04-14</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                  <a href="/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
                 </span>
             </span>
 
@@ -203,8 +196,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2016/webpack-React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2016/webpack-React-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/about-homebrew/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/about-homebrew/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -219,165 +212,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="关于-Webpack-React-的性能优化"><a href="#关于-Webpack-React-的性能优化" class="headerlink" title="关于 Webpack + React 的性能优化"></a>关于 Webpack + React 的性能优化</h2><blockquote>
-<p>这篇文章很早就想写了，但是由于工作太忙，一直挤不出时间。正好趁月底挤干货的时间弄出来一篇。<br>由于本文内容是作者自互联网收集 + 实践与发散思维得出，故可能随时会更新修改，为了方便读者追本索源，转载请保留头部，谢谢<br>本文链接 </p>
-</blockquote>
-<p><strong>另：</strong> 本文不是新手教程，关于 WebPack 如何入门配置、React Jsx 的Loader 等，请移步这里： <a target="_blank" rel="noopener" href="https://hulufei.gitbooks.io/react-tutorial/content/jsx-in-depth.html">使用Jsx</a>    或者     <a target="_blank" rel="noopener" href="https://fakefish.github.io/react-webpack-cookbook/Optimizing-development.html">优化开发-Webpack &amp; Jsx</a></p>
+        <p><a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn.html">Homebrew 是什么?</a></p>
+<h2 id="brew-安装问题"><a href="#brew-安装问题" class="headerlink" title="brew 安装问题"></a>brew 安装问题</h2><h3 id="资源被墙"><a href="#资源被墙" class="headerlink" title="资源被墙"></a>资源被墙</h3><p>由于 GFW 的存在，某些时候可能会导致如下报错</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl: (7) Failed to connect to raw.githubusercontent.com port 443: </span><br><span class="line">Connection refused</span><br></pre></td></tr></table></figure>
+
 <span id="more"></span>
 
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p><strong>使用代理</strong><br>如在开启 sock5 代理后，在安装命令后加上代理地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install -x 127.0.0.1:1087)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>先看一下最基础 Webpack 配置：</p>
-<pre><code>module.exports = &#123;
-    entry: &#39;entry.jsx&#39;,
-    output: &#123;
-        path: path.join(__dirname, &#39;/dist&#39;),
-        filename: &#39;bundle.js&#39;
-    &#125;,
-    resolve: &#123;
-        extensions: [&#39;&#39;, &#39;.js&#39;, &#39;.jsx&#39;, &#39;.scss&#39;]
-    &#125;,
-    module: &#123;
-        loaders: [
-            &#123;
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: &#39;babel&#39;,
-                query: &#123;
-                    presets: [&#39;react&#39;, &#39;es2015&#39;]
-                &#125;
-            &#125;,
-            &#123; test: /\.css$/, &#39;style!css&#39; &#125;,
-            &#123; test: /\.scss$/, &#39;style!css!sass?sourceMap&#39;&#125;,
-        ]
-    &#125;
-&#125;
-</code></pre>
-<p><strong>文件结果</strong>：</p>
-<ul>
-<li>bundle.js : 852kb.</li>
-</ul>
-<p>心想并没有什么复杂的代码，为什么有852kb！</p>
-<p><strong>目前情况：</strong> Webpack + react 文件打包出来过大，动则 几百k 上兆。<br><strong>原因分析：</strong> </p>
-<ul>
-<li>在使用 import css 的时候，Webpack Css 直接作为模块打包到js中。</li>
-<li>所有Js 模块 + 依赖都会打包到一个文件，导致文件很大。</li>
-<li>React、React-dom 文件过大</li>
-</ul>
-<p><strong>解决方案：</strong></p>
-<ol>
-<li><p>分离 css 文件,将css 单独打包。</p>
-<pre><code> //使用 ExtractTextPlugin 插件，将css 打包进一个文件
- plugins: [
-     new ExtractTextPlugin(&quot;bundle.css&quot;),
- ],
+<p>或使用全局代理绑定：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ALL_PROXY=socks5://127.0.0.1:1087 </span><br><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
- //同时需要在 loader 里加上方法，如下
- &#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&#39;style-loader&#39;, &#39;css-loader&#39;) &#125;,
- &#123; test: /\.scss$/, loader: ExtractTextPlugin.extract(&#39;style-loader&#39;,&#39;css!sass?sourceMap&#39;)&#125;,
-</code></pre>
-<p> 此时看下文件大小，变成：</p>
-<ol>
-<li>bundle.css - 56kb</li>
-<li>bundle.js  -796kb</li>
-</ol>
-<p> 好像作用还不是很大… - -！</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>那么执行第二步 ，公用JavaScript 模块分离</p>
-<p> 如果文件 file1 使用了 a 模块， 文件 file2 也使用了 a 模块，那么这个模块就可以认为是公用模块，当然这个数量也可以自己定义，可以使用 <code>CommonsChunkPlugin </code> 分片插件来分离。</p>
-<pre><code> //同样是插件
- new webpack.optimizes.CommonsChunkPlugin(&#39;vendor&#39;,  &#39;vendor.js&#39;)
-</code></pre>
-<p> 此时看下效果，文件变成：</p>
-<ol>
-<li>bundle.css - 56kb</li>
-<li>bundle.js -760kb</li>
-<li>vendor.js -36kb</li>
-</ol>
-<p> 移出了 36kb，效果不是很明显。</p>
-<p> 最好是把 React、React-dom 这种移到 vendor.js 中让他去缓存。</p>
-<pre><code> //修改 entry 为：
- entry: &#123;
-     app: path.resolve(__dirname, &#39;entry.jsx&#39;),
-     vendor: [&#39;react&#39;, &#39;react-dom&#39;]
- &#125;,
-</code></pre>
-<p> 变成：</p>
-<ol>
-<li>bundle.js - 16kb</li>
-<li>vendor.js - 780kb</li>
-</ol>
-</li>
-</ol>
-<ol start="3">
-<li><p>压缩 JavaScript 代码</p>
-<p> 通过 UglifyJsPlugin 插件</p>
-<p> new webpack.optimize.UglifyJsPlugin({</p>
-<pre><code> output: &#123;
-     comments: false,  // remove all comments
- &#125;,
- compress: &#123;
-     warnings: false
- &#125;
-</code></pre>
-<p> })</p>
-<p> 压缩后，文件有明显瘦身：</p>
-<ol>
-<li>bundle.js -16kb</li>
-<li>vendor.js -750kb</li>
-</ol>
-<p> 但是还是不太明显， 原因可能是 react、react-dom 本身就是min 状态，在压缩一遍也小不了多少。</p>
-</li>
-<li><p>那么就从 react 上入手，发现react 里面存在很多注释，警告等，是一个开发版本。那么如何切换成生产版本呢</p>
-<p> 通过 webpack.DefinePlugin 的process.env 来切换成生产版本</p>
-<pre><code> new webpack.DefinePlugin(&#123;
-     &#39;process.env&#39;: &#123;
-         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-     &#125;,
- &#125;),
-</code></pre>
-<p> 当然，这里的<code>process.env.NODE_ENV</code> 也可以直接换成 <code>production</code>，就不用在 build脚本里赋值了，如果按上面的写法，build 里需要赋值：</p>
-</li>
-</ol>
-<pre><code>    &quot;build&quot;: &quot;set NODE_ENV=production&amp;&amp;webpack -p --progress --colors&quot;
+<h2 id="brew-如何使用"><a href="#brew-如何使用" class="headerlink" title="brew 如何使用"></a>brew 如何使用</h2><h3 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// 搜索包</span><br><span class="line">brew search mysql</span><br><span class="line"></span><br><span class="line">// 安装包</span><br><span class="line">brew install mysql</span><br><span class="line"></span><br><span class="line">// 查看包信息，比如目前的版本，依赖，安装后注意事项等</span><br><span class="line">brew info mysql</span><br><span class="line"></span><br><span class="line">// 卸载包</span><br><span class="line">brew uninstall wget</span><br><span class="line"></span><br><span class="line">// 显示已安装的包</span><br><span class="line">brew list</span><br><span class="line"></span><br><span class="line">// 查看brew的帮助</span><br><span class="line">brew –<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">// 更新， 这会更新 Homebrew 自己</span><br><span class="line">brew update</span><br><span class="line"></span><br><span class="line">// 检查过时（是否有新版本），这会列出所有安装的包里，哪些可以升级</span><br><span class="line">brew outdated</span><br><span class="line">brew outdated mysql</span><br><span class="line"></span><br><span class="line">// 升级所有可以升级的软件们</span><br><span class="line">brew upgrade</span><br><span class="line">brew upgrade mysql</span><br><span class="line"></span><br><span class="line">// 清理不需要的版本极其安装包缓存</span><br><span class="line">brew cleanup</span><br><span class="line">brew cleanup mysql</span><br></pre></td></tr></table></figure>
 
-注意： 这里是 windows的写法，如果是 mac、linux 需要这样写 ——
 
-    NODE_ENV=production webpack -p --progress --colors
+<h3 id="brew-cask"><a href="#brew-cask" class="headerlink" title="brew cask"></a>brew cask</h3><p>brew cask 可以额外安装 GUI 软件，如:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install dingtalk</span><br></pre></td></tr></table></figure>
 
-看一眼，这个影响最大，编译完成后：
+<p>brew cask 相比 brew 新增的命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">brew cask audit</span><br><span class="line">查询指定 Cask 的可安装性</span><br><span class="line"></span><br><span class="line">brew cask cat</span><br><span class="line">查看指定 Cask 安装源信息</span><br><span class="line"></span><br><span class="line">brew cask zap</span><br><span class="line">打包指定 Cask</span><br><span class="line"></span><br><span class="line">brew cask cleanup</span><br><span class="line">清理缓存及软链</span><br></pre></td></tr></table></figure>
 
-1. bundle.js -16kb
-2. vendor.js -144kb
-</code></pre>
-<ol start="5">
-<li><p>上面四条已经差不多解决了文件过大的问题，但是还有童鞋发现，编译速度好慢.. 为什么？ </p>
-<p> 编译速度慢是因为项目中引用了很多的模块，这些模块又互相依赖， webpack 去处理依赖关系的时候， 要去 npm中搜索， 硬盘搜索很占用资源。所以可以通过 alias 配置来解决</p>
-<pre><code> var node_modules = path.resolve(__dirname, &#39;node_modules&#39;);
- var pathToReact = path.resolve(node_modules, &#39;react/dist/react.min&#39;);
+<p><em><strong>Tips</strong></em><br>如果安装一半 alt + z 关掉了，下次再使用 cask 的时候会提示：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Another active Homebrew update process is already <span class="keyword">in</span> progress.</span><br></pre></td></tr></table></figure>
 
- resolve: &#123;
-     alias: &#123;
-         &#39;react&#39;: pathToReact
-     &#125;
- &#125;,
-</code></pre>
-<p> 这样等于直接为 webpack 指定了目录，上述只是配置了 react ， 如果需要，可以酌情配置其他库。</p>
-</li>
-</ol>
-<p><strong>注：</strong> 上述所有插件，都需要 npm install 。</p>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>优化了这么多，还有没有优化的空间？当然有。</p>
-<ul>
-<li>服务端渲染</li>
-<li>首屏优化</li>
-<li>异步加载模块</li>
-<li>…. </li>
-<li>还有很多</li>
-</ul>
-<p>代码在这里： <a target="_blank" rel="noopener" href="https://github.com/zhukejin/WebPack-Demo">https://github.com/zhukejin/WebPack-Demo</a></p>
-<p>公司即将倒闭，求一个工作机会。</p>
-<p><a href="Mailto:zhukejin@msn.com">如何联系我？点击此处发送邮件:To:zhukejin@msn.com</a></p>
+<p>原因是在安装的时候，brew 会生成 locks 文件，删除锁定即可</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/<span class="built_in">local</span>/var/homebrew/locks   </span><br></pre></td></tr></table></figure>
+
+
+<h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/61f209cd0e91">https://www.jianshu.com/p/61f209cd0e91</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bca8fc1ff3f0">https://www.jianshu.com/p/bca8fc1ff3f0</a></p>
+</blockquote>
 
     </div>
 
@@ -387,8 +252,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/React/" rel="tag"># React</a>
-              <a href="/tags/Webpack/" rel="tag"># Webpack</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
         
@@ -397,13 +261,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2016/creat-100-array/" rel="prev" title="如何快速的创建一个包含100个元素的数组">
-      <i class="fa fa-chevron-left"></i> 如何快速的创建一个包含100个元素的数组
+    <a href="/2021/productivity-tools/" rel="prev" title="提高工作效率的工具集(第一期)">
+      <i class="fa fa-chevron-left"></i> 提高工作效率的工具集(第一期)
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2016/Angular2DynamicLoadComponent/" rel="next" title="Angular2 动态的创建组件并插入到Shadow Dom中">
-      Angular2 动态的创建组件并插入到Shadow Dom中 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -463,7 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-Webpack-React-%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">关于 Webpack + React 的性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">1.1.</span> <span class="nav-text">写在最后</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#brew-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">brew 安装问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E8%A2%AB%E5%A2%99"><span class="nav-number">1.1.</span> <span class="nav-text">资源被墙</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brew-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">brew 如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brew-cask"><span class="nav-number">2.2.</span> <span class="nav-text">brew cask</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">2.2.1.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
